@@ -1,3 +1,7 @@
+# quick start
+- npm i
+- npm start
+
 # simple and useful for small projects
 - ejs template
 - less css processor
