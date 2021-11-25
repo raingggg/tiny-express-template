@@ -16,7 +16,7 @@ var usersRouter = require('./routes/users');
 var funkyObject = {};
 
 i18n.configure({
-  locales: ['en', 'de'],
+  locales: ['en', 'de', 'zh-CN', 'zh-TW', 'ja'],
   register: funkyObject,
   directory: path.join(__dirname, 'locales'),
   updateFiles: false,

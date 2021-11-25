@@ -5,3 +5,8 @@ body {
 a {
   color: #00B7FF;
 }
+.language-wrapper {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
