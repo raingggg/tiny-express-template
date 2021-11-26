@@ -8,6 +8,8 @@ const translateAll = async () => {
   const localePath = path.resolve(__dirname, '../locales');
   let files = await readdir(path.resolve(localePath));
   files = files.filter(f => f.endsWith('.json'));
+  console.log('locales', files.map(k => k.replace('.json', '')));
+
   const en = files.find(f => f === 'en.json');
   const enFile = require(path.resolve(localePath, en));
   const keys = Object.keys(enFile).sort();

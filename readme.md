@@ -9,3 +9,6 @@
 - i118n support
 - jquery
 - bootstrap
+
+# translate from en to other locales
+- npm run translate

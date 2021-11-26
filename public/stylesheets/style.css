@@ -10,3 +10,6 @@ a {
   right: 20px;
   top: 20px;
 }
+.language-wrapper #lang-picker li {
+  font-size: 0.8rem;
+}
