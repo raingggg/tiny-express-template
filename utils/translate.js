@@ -1,10 +1,9 @@
 const path = require('path');
-const { promisify } = require('util');
-const { readdir, readFile, writeFile } = require('fs/promises');
-const translate = require('@vitalets/google-translate-api');
-const trans = promisify(translate);
+const { readdir, writeFile } = require('fs/promises');
+const translateOpen = require('google-translate-open-api');
+const translate = translateOpen.default;
 
-const translateAll = async () => {
+const translateAll = async (startLocale) => {
   const localePath = path.resolve(__dirname, '../locales');
   let files = await readdir(path.resolve(localePath));
   files = files.filter(f => f.endsWith('.json'));
@@ -18,6 +17,8 @@ const translateAll = async () => {
     const objContent = {};
     const fileName = files[i];
     const locale = fileName.replace('.json', '');
+    if (startLocale && locale < startLocale) continue;
+
     console.log('\nlocale', locale);
     for (let j = 0; j < keys.length; j++) {
       const key = keys[j];
@@ -25,9 +26,9 @@ const translateAll = async () => {
       if (fileName === en) {
         objContent[key] = val;
       } else {
-        const res = await translate(val, { from: 'en', to: locale });
-        objContent[key] = res.text;
-        console.log(key, [val, res.text]);
+        const res = await translate(val, { client: "dict-chrome-ex", from: 'en', to: locale });
+        objContent[key] = res.data.sentences.map(s => s.trans).join('');
+        console.log(key, [val, objContent[key]]);
       }
     }
 
@@ -36,3 +37,4 @@ const translateAll = async () => {
 };
 
 translateAll();
+// translateAll('ja');

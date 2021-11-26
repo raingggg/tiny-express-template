@@ -17,6 +17,6 @@
     "morgan": "~1.9.1"
   },
   "devDependencies": {
-    "@vitalets/google-translate-api": "^7.0.0"
+    "google-translate-open-api": "^1.3.7"
   }
 }
